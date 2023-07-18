@@ -2,7 +2,13 @@ import React from "react";
 
 export class Home extends React.Component{
 
-    
+    handleButtonClick = ()=>{
+        const url = document.getElementById("recipeURL").value;
+        const iframe = document.getElementById("recipeFrame");
+
+        iframe.src = url
+    }
+
     render(){
         return(
             <div>
