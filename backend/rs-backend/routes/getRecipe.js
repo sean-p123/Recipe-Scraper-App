@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var cheerio = require("cheerio");
-
+var axios = require("axios");
 /*router.get("/", function(req, res, next) {
     res.send("API Working properly");
 });
@@ -20,7 +20,7 @@ router.post("/load-recipe", function (req, res, next) {
   */
 
   let recipeURL =""
-  router.post("/", function (req, res, next) {
+  router.post("/", async function (req, res, next) {
     // Extracting the URL data from the request body
     const { url } = req.body;
   
@@ -30,11 +30,39 @@ router.post("/load-recipe", function (req, res, next) {
   
     // Sending the recipe URL back to the frontend
     res.json({ recipe: recipeURL });
-
     console.log("nice " +recipeURL)
     //now you have the url, you must scrape the website url using cheerio
     //to get the information you want
 
+    const response = await axios.get(url);
+    const htmlContent = response.data;
+
+    //now use cheerio to parst the html data
+    const $ = cheerio.load(htmlContent);
+
+    $('script').each((index, element) => {
+      const script = $(element);
+
+      if (script.attr('type') === 'application/ld+json') {
+        const scriptContent = script.html();
+        //parse script content to json
+        const scriptData = JSON.parse(scriptContent);
+        console.log("*** Start of script data ***");
+        console.log(scriptData);
+        console.log("*** End of script data ***");
+
+        if(scriptData.recipeIngredient !== undefined){
+          //access recipe ingredients
+          const recipeIngredients = scriptData.recipeIngredient;
+
+          console.log(recipeIngredients);
+          
+          recipeIngredients.forEach((ingredient, index) => {
+            console.log(`Ingredient ${index + 1}: ${ingredient}`);
+          });
+        }
+      }
+    })
 
     
   //  res.json({ message: "Recipe data received and processed successfully" });
