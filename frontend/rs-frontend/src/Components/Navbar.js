@@ -9,7 +9,7 @@ export default function NavBar(){
         <ul>
             <CustomLink to="/lecturer"><AiOutlinePlusCircle size={36}/></CustomLink>
             <CustomLink to="/student"><AiOutlineSearch size={36}/></CustomLink>
-            <CustomLink to="/student"><BsBook size={36}/></CustomLink>
+            <CustomLink to="/library"><BsBook size={36}/></CustomLink>
         </ul>
     </nav>)
 }

@@ -28,6 +28,11 @@ export class Home extends React.Component {
         // Assuming the backend returns the recipe data in "data.recipe" property
         iframe.src = data.recipe;
 
+
+        
+
+
+
         /*this.setState(
           { ingredients: data.recipeIngredients, instructions: data.recipeInstruction },
           () => {
@@ -83,6 +88,10 @@ export class Home extends React.Component {
         );
       })
 
+
+
+
+
     /* const instructionResponse =  fetch("http://localhost:9000/getRecipe/api/scrapedRecipeIngredients");
    const instructionList =  instructionResponse.json();
    console.log(instructionList);
@@ -93,7 +102,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
-        <h1>Recipe Keeper</h1>
+        <h1>Import Recipe</h1>
         <div>
           <label>Enter URL for recipe: </label>
           <input type="text" id="recipeURL"></input>

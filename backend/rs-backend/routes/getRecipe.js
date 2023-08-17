@@ -22,6 +22,7 @@ router.post("/load-recipe", function (req, res, next) {
 let recipeURL = "";
 let recipeIngredients = "";
 let recipeInstruction = "";
+let thumbnailImageUrl = ""
 let scriptContent;
 router.post("/", async function (req, res, next) {
   // Extracting the URL data from the request body
@@ -43,10 +44,16 @@ router.post("/", async function (req, res, next) {
   //now use cheerio to parst the html data
   const $ = cheerio.load(htmlContent);
 
+  const ogImageTag = $('meta[property="og:image"]');
+  const thumbnailImageUrl = ogImageTag.attr('content');
   //using this link https://tasty.co/recipe/french-onion-smash-burger-tacos
   //possibly try to stop this loop after the first iteration
   $('script').each((index, element) => {
     const script = $(element);
+
+    
+
+
 
     if (script.attr('type') === 'application/ld+json') {
       //const scriptContent = script.html();
@@ -96,9 +103,11 @@ router.post("/", async function (req, res, next) {
 
   //  console.log(response.data);
 
-  //  res.json({ message: "Recipe data received and processed successfully" });
-
+   /* res.json({ message: "Recipe data received and processed successfully",
+  thumbnailImg: thumbnailImageUrl, });
+*/
   // res.send(recipeURL);
+  console.log("Thumbnail Image URL:", thumbnailImageUrl);
 });
 
 router.get("/api/scrapedRecipeIngredients", function (req, res, next) {
