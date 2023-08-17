@@ -101,15 +101,17 @@ router.post("/", async function (req, res, next) {
   // res.send(recipeURL);
 });
 
-router.get("/api/scrapedRecipe", function (req, res, next) {
+router.get("/api/scrapedRecipeIngredients", function (req, res, next) {
   const responseData = {
-    scriptContent: scriptContent,
-    recipeIngredients: recipeIngredients,
+    recipeIngredients: recipeIngredients
+  };
+  res.json(responseData);
+});
+
+router.get("/api/scrapedRecipeInstructions", function(req,res,next){
+  const responseData = {
     recipeInstruction: recipeInstruction
   };
   res.json(responseData);
-  /*res.json({ recipe: recipeIngredients });
-  res.json({ recipe: recipeInstruction});
-*/
-});
+})
 module.exports = router;
