@@ -69,6 +69,20 @@ export class Home extends React.Component {
       })
 
 
+      fetch("http://localhost:9000/getRecipe/api/scrapedRecipeInstructions")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        this.setState(
+          {
+            instructions: data.recipeInstruction,
+          },
+          () => {
+            console.log("Instructions state:", this.state.instructions);
+          }
+        );
+      })
+
     /* const instructionResponse =  fetch("http://localhost:9000/getRecipe/api/scrapedRecipeIngredients");
    const instructionList =  instructionResponse.json();
    console.log(instructionList);
@@ -87,18 +101,24 @@ export class Home extends React.Component {
         </div>
         <iframe id="recipeFrame" width="680" height="480" allowFullScreen></iframe>
         <div>
-          <object data="https:/youtube.com" width="600" height="400">
-
-            Error: Embedded data could not be displayed.
-          </object>
-          <div>
+          
+          <div className="recipe-container">
             <h1>Ingredients:</h1>
             <ul>
               {this.state.ingredients.map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
+
+            <h1>Instructions:</h1>
+            <ol>
+              {this.state.instructions.map((instruction, index) => (
+                <li key={index}>{instruction.text}</li>
+              ))}
+            </ol>
+           
           </div>
+          
         </div>
       </div>
 

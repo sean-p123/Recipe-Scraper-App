@@ -76,6 +76,14 @@ body{
     text-decoration: none;
     border-radius: 4px;
   }
+
+  .recipe-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    max-width: 400px;
+    background-color: #f9f9f9;
+  }
   
   .update-button:hover {
     background-color: #0056b3;
