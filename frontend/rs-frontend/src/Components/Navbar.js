@@ -7,8 +7,8 @@ export default function NavBar(){
     return (<nav className="nav">
         <Link to="/" className="site-title">Recipe Keeper</Link>
         <ul>
-            <CustomLink to="/lecturer"><AiOutlinePlusCircle size={36}/></CustomLink>
-            <CustomLink to="/student"><AiOutlineSearch size={36}/></CustomLink>
+            <CustomLink to="/addRecipe"><AiOutlinePlusCircle size={36}/></CustomLink>
+            <CustomLink to="/searchRecipe"><AiOutlineSearch size={36}/></CustomLink>
             <CustomLink to="/library"><BsBook size={36}/></CustomLink>
         </ul>
     </nav>)

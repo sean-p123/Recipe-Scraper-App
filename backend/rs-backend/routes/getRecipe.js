@@ -22,7 +22,7 @@ router.post("/load-recipe", function (req, res, next) {
 let recipeURL = "";
 let recipeIngredients = "";
 let recipeInstruction = "";
-let thumbnailImageUrl = ""
+let thumbnailImageUrl = "";
 let scriptContent;
 router.post("/", async function (req, res, next) {
   // Extracting the URL data from the request body
